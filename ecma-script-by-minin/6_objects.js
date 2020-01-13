@@ -1,17 +1,25 @@
-const phoneCode = '+3 (75)';
+// const job = 'Frontend';
+//
+// const person = {
+//   age: 20,
+//   name: 'Irina',
+//   'country-live': 'Russian',
+//   // job: job,
+//   job,
+//   toString() {
+//     return Object
+//         .keys(this)
+//         .filter(key => key !== 'toString')
+//         .map(key => this[key])
+//         .join(' ');
+//   }
+// };
+//
+// console.log(person.job); // Frontend
 
-const person = {
-  age: 20,
-  name: 'Irina',
-  'country-live': 'Russian',
-  phone: () => phoneCode + ' 777-77-777',
-  toString() {
-    return Object
-        .keys(this)
-        .filter(key => key !== 'toString')
-        .map(key => this[key])
-        .join(' ');
-  }
-};
+// Methods
 
-console.log(person.phone()); // +3 (75) 777-77-777
+const obj = {a: 1, b: 2, c: 3};
+
+console.log(Object.keys(obj)); // [ 'a', 'b', 'c' ]
+console.log(Object.values(obj)); // [ 1, 2, 3 ]
