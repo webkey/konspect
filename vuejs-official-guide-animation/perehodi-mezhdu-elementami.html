@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns: xmlns:>
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.js - Анимация</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    #demo {
+      border: 1px solid #bebebe;
+      padding: 10px;
+    }
+    .bounce-enter-active {
+      animation: bounce-in .5s;
+    }
+    .bounce-leave-active {
+      animation: bounce-in .5s reverse;
+    }
+    @keyframes bounce-in {
+      0% {
+        transform: scale(0);
+      }
+      50% {
+        transform: scale(1.5);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div id="demo">
+  <button @click="show = !show">Показать/скрыть</button>
+  <transition name="bounce" appear>
+    <p v-if="show">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci aliquid blanditiis consequuntur cumque cupiditate doloribus eveniet, facere impedit iusto laudantium maiores minima neque nesciunt nisi placeat quisquam tenetur voluptatem?</p>
+  </transition>
+</div>
+
+<script>
+  new Vue({
+    el: '#demo',
+    data: {
+      show: true
+    }
+  })
+</script>
+</body>
+</html>

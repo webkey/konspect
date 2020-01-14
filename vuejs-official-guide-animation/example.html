@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.js - Анимация</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    #demo {
+      border: 1px solid #bebebe;
+      padding: 10px;
+    }
+    #demo p {
+      transform-origin: left center;
+    }
+    .fade-appear-active {
+      transition: opacity 2s, transform 2s;
+    }
+    .fade-appear {
+      opacity: 0;
+      transform: scale(0.1);
+    }
+    .fade-enter-active,
+    .fade-leave-active {
+      transition: opacity 0.5s;
+    }
+    .fade-enter,
+    .fade-leave-to {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+
+<div id="demo">
+  <button v-on:click="show = !show">
+    Переключить
+  </button>
+  <transition
+      name="fade"
+      appear
+      appear-class="fade-appear"
+      appear-active-class="fade-appear-active"
+      appear-to-class="fade-appear-to">
+    <p v-if="show">привет</p>
+  </transition>
+</div>
+
+<script>
+  new Vue({
+    el: '#demo',
+    data: {
+      show: true
+    }
+  })
+</script>
+</body>
+</html>
