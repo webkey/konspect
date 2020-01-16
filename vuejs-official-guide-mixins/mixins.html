@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns: xmlns:>
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.js - Миксины</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    #demo {
+      border: 1px solid #bebebe;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div>
+  Ничего нет
+</div>
+
+<script>
+  var mixin = {
+    created: function () {
+      console.log('вызван хук примеси')
+    }
+  }
+
+  new Vue({
+    mixins: [mixin],
+    created: function () {
+      console.log('вызван хук компонента')
+    }
+  })
+
+  // => "вызван хук примеси"
+  // => "вызван хук компонента"
+</script>
+</body>
+</html>

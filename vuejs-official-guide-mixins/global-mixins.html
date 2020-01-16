@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns: xmlns:>
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.js - Миксины</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    #demo {
+      border: 1px solid #bebebe;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div>
+  Ничего нет
+</div>
+
+<script>
+  // добавляем обработчик для пользовательской опции `myOption`
+  Vue.mixin({
+    created: function () {
+      var myOption = this.$options.myOptionTest
+      if (myOption) {
+        console.log(myOption)
+      }
+      console.log('this.$options: ', this.$options);
+    }
+  })
+
+  new Vue({
+    myOptionTest: 'hello!'
+  })
+  // => "hello!"
+</script>
+</body>
+</html>
