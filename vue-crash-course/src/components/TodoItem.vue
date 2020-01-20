@@ -9,9 +9,10 @@
       <!--Обработка события change для чекбокса-->
       <input
           type="checkbox"
+          :checked="todo.completed"
           v-on:change="todo.completed = !todo.completed">
       <strong>{{index + 1}}</strong>
-      {{todo.title}}
+      {{todo.title | uppercase}}
     </span>
     <!--12.1.-->
     <!--Удаление элемента-->
@@ -33,6 +34,12 @@
         required: true
       },
       index: Number
+    },
+    // Создать фильтр для выводимых данных
+    filters: {
+      uppercase(value) {
+        return value.toUpperCase();
+      }
     }
   }
 </script>
