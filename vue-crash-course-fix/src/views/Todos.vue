@@ -1,26 +1,34 @@
 <template>
   <div>
-    <router-link to="/">Home</router-link>
     <h2>Todo list</h2>
+    <router-link to="/">Home</router-link>
+    <hr>
     <AddTodo
         @create-todo="createTodo"
     />
+    <FilterTodo
+      v-model="filter"
+    />
     <TodoList
-        :todos="todos"
+        v-if="filteredTodos.length"
+        :todos="filteredTodos"
         @remove-todo="removeTodo"
     />
+    <p v-else>No todos!</p>
   </div>
 </template>
 
 <script>
   import TodoList from '@/components/TodoList'
   import AddTodo from '@/components/AddTodo'
+  import FilterTodo from '@/components/FilterTodo'
 
   export default {
     name: 'app',
     data() {
       return {
-        todos: []
+        todos: [],
+        filter: 'all'
       }
     },
     mounted() {
@@ -29,6 +37,25 @@
           .then(json => {
             this.todos = json
           })
+    },
+    // watch: {
+    //   filter(value) {
+    //     /* eslint-disable no-alert, no-console */
+    //     console.log('value: ', value);
+    //   }
+    // },
+    computed: {
+      filteredTodos() {
+        if(this.filter === 'completed') {
+          return this.todos.filter(t => t.completed)
+        }
+
+        if(this.filter === 'no-completed') {
+          return this.todos.filter(t => !t.completed)
+        }
+
+        return this.todos;
+      }
     },
     methods: {
       removeTodo(id) {
@@ -40,7 +67,8 @@
     },
     components: {
       TodoList,
-      AddTodo
+      AddTodo,
+      FilterTodo
     }
   }
 </script>

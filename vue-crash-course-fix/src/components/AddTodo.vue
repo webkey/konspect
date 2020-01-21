@@ -18,7 +18,7 @@
     methods: {
       createTodo() {
         /* eslint-disable no-alert, no-console */
-        console.log('submit: ', this.title);
+        // console.log('submit: ', this.title);
         
         if(this.title.trim()) {
           const newTodo = {
