@@ -12,8 +12,6 @@
   export default {
     computed: {
       layout() {
-        /* eslint-disable no-alert, no-console */
-        console.log('meta: ', );
         return (this.$route.meta.layout || 'empty') + '-layout'
       }
     },
