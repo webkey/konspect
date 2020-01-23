@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Vuelidate from 'vuelidate';
+import Vuelidate from 'vuelidate'; // Плагин валидации форм https://vuelidate.js.org/
 import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
