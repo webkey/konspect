@@ -69,7 +69,7 @@
         required
       },
       password: {
-        minLength: minLength(10),
+        minLength: minLength(6),
         required
       }
     },
