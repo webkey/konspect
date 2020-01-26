@@ -56,6 +56,7 @@
 
 <script>
   import {email, required, minLength} from 'vuelidate/lib/validators'
+  import messages from '@/utils/message'
 
   export default {
     name: 'Login',
@@ -73,8 +74,13 @@
         required
       }
     },
+    mounted() {
+      if(messages[this.$route.query.message]) {
+        this.$error(messages[this.$route.query.message])
+      }
+    },
     methods: {
-      submitHandler() {
+      async submitHandler() {
         // this.$v.$invalid - указывает на невалидность всей формы
         if (this.$v.$invalid) {
           this.$v.$touch(); // активация валидации
@@ -84,8 +90,13 @@
           email: this.email,
           password: this.password
         };
-        this.$router.push('/');
-        console.log('formData: ', formData);
+
+        try {
+          await this.$store.dispatch('login', formData);
+          this.$router.push('/');
+        } catch (e) {
+          return false;
+        }
       }
     }
   }
