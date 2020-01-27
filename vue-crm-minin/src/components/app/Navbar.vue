@@ -43,24 +43,22 @@
       dropdown: null
     }),
     methods: {
-      logout() {
-        console.log('Logout');
+      async logout() {
+        await this.$store.dispatch('logout');
         this.$router.push('/login?message=logout')
       }
     },
     mounted() {
-      console.log('mounted')
-
       this.interval = setInterval(() => {
         this.date = new Date()
-      }, 1000)
+      }, 1000);
 
       this.dropdown = M.Dropdown.init(this.$refs.dropdown, {
         constrainWidth: true
       })
     },
     beforeDestroy() {
-      clearInterval(this.interval)
+      clearInterval(this.interval);
 
       if(this.dropdown && this.dropdown.destroy) {
         this.dropdown.destroy()

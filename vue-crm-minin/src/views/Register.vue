@@ -128,7 +128,8 @@
       agree: {agree: c => c}
     },
     methods: {
-      submitHandler() {
+      // Оператор async указваем потому что внутри метода submitHandler выполняется асинхронный метод (промис) store register с оператором await
+      async submitHandler() {
         if (this.$v.$invalid) {
           this.$v.$touch();
 
@@ -136,14 +137,18 @@
         }
 
         const formData = {
-          name: this.name,
           email: this.email,
-          password: this.password
+          password: this.password,
+          name: this.name
         };
 
-        console.log("formData: ", formData);
-
-        this.$router.push('/')
+        try {
+          // Оператор await означает, что необходимо подождать выполнения асинхронного метода register
+          await this.$store.dispatch('register', formData);
+          this.$router.push('/')
+        } catch (e) {
+          return false;
+        }
       }
     }
   }
