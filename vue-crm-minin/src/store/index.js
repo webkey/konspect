@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import auth from './auth'
+// L09.3. Импотируем модуль info. Подключить в modules
+import info from './info'
 
 Vue.use(Vuex);
 
@@ -29,6 +31,6 @@ export default new Vuex.Store({
     error: state => state.error
   },
   modules: {
-    auth
+    auth, info
   }
 })

@@ -41,9 +41,11 @@ export default {
       return user ? user.uid : null;
     },
     // Экшн (асинхронный) для выхода из системы
-    async logout() {
+    async logout({commit}) {
       await firebase.auth().signOut();
-      console.log('logout');
+      // L09.11 Очищаем state.info после выхода из системы
+      await commit('clearInfo');
+      // console.log('logout');
     }
   }
 }

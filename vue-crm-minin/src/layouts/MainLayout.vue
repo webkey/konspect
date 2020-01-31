@@ -25,11 +25,11 @@
     data: () => ({
       isOpen: true
     }),
-    mounted() {
+    async mounted() {
       // Метод mounted лучше всего подходит для работы с АСИНХРОННЫМИ запросами
-      // L9.1. Если в геттерах не будет данных о пользователях, то вызываем метод для аснх. получения этих данных
-      if () {
-        this.$store.dispatch('fetchInfo')
+      // L09.1. Если в геттерах не будет данных о пользователях, то вызываем метод для аснх. получения этих данных
+      if (!Object.keys(this.$store.getters.info).length) {
+        await this.$store.dispatch('fetchInfo')
       }
     },
     components: {Sidebar, Navbar}

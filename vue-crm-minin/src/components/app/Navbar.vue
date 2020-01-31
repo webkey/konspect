@@ -12,7 +12,7 @@
               href="#"
               data-target="dropdown"
               ref="dropdown"
-          > USER NAME <i class="material-icons right">arrow_drop_down</i> </a>
+          > {{name}} <i class="material-icons right">arrow_drop_down</i> </a>
 
           <ul id='dropdown' class='dropdown-content'>
             <li>
@@ -48,13 +48,20 @@
         this.$router.push('/login?message=logout')
       }
     },
+    computed: {
+      name() {
+        return this.$store.getters.info.name
+      }
+    },
     mounted() {
       this.interval = setInterval(() => {
         this.date = new Date()
       }, 1000);
 
+      // К элементу обращаемся через объект $refs Вью,
+      // А в этот объект элементы добавляются через атрибут ref в компоненте
       this.dropdown = M.Dropdown.init(this.$refs.dropdown, {
-        constrainWidth: true
+        constrainWidth: false
       })
     },
     beforeDestroy() {
