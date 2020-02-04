@@ -6,6 +6,8 @@ import router from './router'
 import store from './store'
 import dateFilter from './filters/date.filter';
 import messagePlugin from '@/utils/message.plugin';
+// L09.18 Импортируем лоадер глобально для всего преложения
+import Loader from "./components/app/Loader";
 import 'materialize-css/dist/js/materialize.min'
 
 import firebase from 'firebase/app'
@@ -17,6 +19,8 @@ Vue.config.productionTip = false;
 Vue.use(messagePlugin);
 Vue.use(Vuelidate);
 Vue.filter('date', dateFilter);
+// L09.19 Регистрируем глобально
+Vue.component('Loader', Loader);
 
 firebase.initializeApp({
   apiKey: "AIzaSyAJwuLV47LcXAL5HggFjA-DAX2V-gEdOUg",
