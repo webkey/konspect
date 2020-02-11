@@ -3,7 +3,10 @@
     <div class="page-title">
       <h3>Счет</h3>
 
-      <button class="btn waves-effect waves-light btn-small">
+      <!--// L09.46 Реализуем кнопку обновления курса валют-->
+      <button
+          @click.prevent="refresh"
+          class="btn waves-effect waves-light btn-small">
         <i class="material-icons">refresh</i>
       </button>
     </div>
@@ -13,11 +16,19 @@
 
     <div v-else class="row">
       <div class="col s12 m6 l4">
-        <HomeBill />
+        <!--// L09.30 передаем currency.rates (курсы валют) внуть комонента-->
+        <HomeBill
+            :rates="currency.rates"
+        />
       </div>
 
       <div class="col s12 m6 l8">
-        <HomeCurrency />
+        <!--// L09.41 передаем currency.rates (курсы валют) внуть комонента-->
+        <!--// L09.42 передаем currency.date (дата текущего курса) внуть комонента-->
+        <HomeCurrency
+            :rates="currency.rates"
+            :date="currency.date"
+        />
       </div>
     </div>
   </div>
@@ -41,9 +52,16 @@
       // и сохранять данные в моделе currency
       // 'fetchCurrency' - это Action, потому .dispatch()
       this.currency = await this.$store.dispatch('fetchCurrency');
-      console.log(this.currency);
       // L09.24 После этого установить модель loading в значение false, чтобы скрыть Лоадер и показать контент
       this.loading = false;
+    },
+    methods: {
+      // L09.47 Реализуем метод обновления курса валют
+      async refresh() {
+        this.loading = true;
+        this.currency = await this.$store.dispatch('fetchCurrency');
+        this.loading = false;
+      }
     },
     components: {
       // L09.14 Подключаем компоненты

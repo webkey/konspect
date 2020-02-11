@@ -5,6 +5,8 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import dateFilter from './filters/date.filter';
+// L09.38 Импортируем фильтр Валют
+import currencyFilter from "./filters/currency.filters";
 import messagePlugin from '@/utils/message.plugin';
 // L09.18 Импортируем лоадер глобально для всего преложения
 import Loader from "./components/app/Loader";
@@ -19,6 +21,8 @@ Vue.config.productionTip = false;
 Vue.use(messagePlugin);
 Vue.use(Vuelidate);
 Vue.filter('date', dateFilter);
+// L09.39 Регистрируем фильтр Валют
+Vue.filter('currency', currencyFilter);
 // L09.19 Регистрируем глобально
 Vue.component('Loader', Loader);
 

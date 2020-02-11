@@ -34,9 +34,8 @@ export default {
         return false;
       }
     }
-
   },
   getters: {
-    info: state => state.info
+    info: s => s.info
   }
 }

@@ -37,7 +37,9 @@ export default new Vuex.Store({
       // L09.28 В метод fetch передадим url-адрес, который берем на dashboard сервися fixer.io
       // Модифицируем скоприованный url заменяя ключ на переменную key, a &format=1 на те валюты, которые будем исп.
       const res = await fetch(`http://data.fixer.io/api/latest?access_key=${key}&symbols=USD,EUR,RUB`);
-      // L09.29 Необходимо распарсить те данные, которые пришли методом .json() и вернуть их
+      // L09.29 Необходимо распарсить те данные, которые пришли
+      // Используем для этого метод .json()
+      // и возвращаем полученные данные
       return await res.json();
     }
   },
