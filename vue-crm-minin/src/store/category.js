@@ -7,9 +7,7 @@ export default {
         const uid = await dispatch('getUid');
         const categories = (await firebase.database().ref(`/user/${uid}/categories`).once('value')).val() || {};
 
-        console.log("categories: ", categories);
-        const cats = Object.keys(categories).map(key => ({...categories[key], id: key}));
-        console.log("cats: ", cats);
+        return Object.keys(categories).map(key => ({...categories[key], id: key}));
       } catch (e) {
         throw e;
       }
@@ -20,6 +18,15 @@ export default {
         const category = await firebase.database().ref(`/user/${uid}/categories`).push({title, limit});
         return {title, limit, id: category.key}
       } catch (e) {
+        throw e;
+      }
+    },
+    async updateCategory({commit, dispatch}, {id, title, limit}) {
+      try {
+        const uid = await dispatch('getUid');
+        await firebase.database().ref(`/user/${uid}/categories`).child(id).update({title, limit});
+      } catch (e) {
+        commit('setError', e)
         throw e;
       }
     }

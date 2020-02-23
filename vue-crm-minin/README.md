@@ -22,3 +22,20 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Fixed bugs
+```
+npm cache clean --force
+```
+then
+```
+npm install -g @angular/cli
+```
+then
+```
+npm i
+```
+then
+```
+npm run serve
+```
