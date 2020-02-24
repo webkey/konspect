@@ -17,21 +17,30 @@ export default {
     }
   },
   actions: {
+    async updateInfo({dispatch, commit, getters}, toUpdate) {
+      try {
+        const uid = await dispatch('getUid')
+        const updateData = {...getters.info, ...toUpdate}
+        await firebase.database().ref(`/user/${uid}/info`).update(updateData)
+        commit('setInfo', updateData)
+      } catch (e) {
+        commit('setError', e)
+        throw e
+      }
+    },
     async fetchInfo({dispatch, commit}) {
       // L09.10 Обработать ошибки, если возникнут при аснх. запросе
       try {
         // L09.4. Асинхронно получаем UID пользователя
         const uid = await dispatch('getUid');
         // L09.6. Запрос (аснх.) к Firebase для получения info по UID
-        const info = (await firebase
-                .database()
-                .ref(`/user/${uid}/info`)
-                .once('value')
+        const info = (await firebase.database().ref(`/user/${uid}/info`).once('value')
         ).val();
         // L09.7. Изменить state.info через мутацию (исп. метод commit)
         commit('setInfo', info);
       } catch (e) {
-        return false;
+        commit('setError', e)
+        throw e
       }
     }
   },

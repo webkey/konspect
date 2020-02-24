@@ -4,6 +4,7 @@ import auth from './auth'
 // L09.3. Импотируем модуль info. Подключить в modules
 import info from './info'
 import category from "./category";
+import record from "./record";
 
 Vue.use(Vuex);
 
@@ -51,6 +52,6 @@ export default new Vuex.Store({
     error: state => state.error
   },
   modules: {
-    auth, info, category
+    auth, info, category, record
   }
 })
