@@ -17,7 +17,7 @@
       </main>
 
       <div class="fixed-action-btn">
-        <router-link class="btn-floating btn-large blue" to="/record">
+        <router-link v-tooltip="'Добавить новую категорию'" class="btn-floating btn-large blue" to="/record">
           <i class="large material-icons">add</i>
         </router-link>
       </div>
@@ -27,6 +27,7 @@
 <script>
   import Navbar from "../components/app/Navbar";
   import Sidebar from "../components/app/Sidebar";
+  import message from "../utils/message";
 
   export default {
     data: () => ({
@@ -44,6 +45,20 @@
       // L09.49 Удаляем прелоадер, если данные уже есть
       this.loading = false;
     },
-    components: {Sidebar, Navbar}
+    components: {Sidebar, Navbar},
+    computed: {
+      error() {
+        // Вычесляемое свойство error будет возваращать значение поля error в геттерах
+        // и меняться, в случае изменения error в геттерах
+        return this.$store.getters.error;
+      }
+    },
+    watch: {
+      // 1) Сделить за вычисляемым свойством error
+      // 2) Получать ошибку в формате firebase
+      error(fbError) {
+        this.$error(message[fbError.code] || message['unknown'])
+      }
+    }
   }
 </script>

@@ -4,27 +4,29 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
-import dateFilter from './filters/date.filter';
+import dateFilter from './filters/date.filter'
 // L09.38 Импортируем фильтр Валют
-import currencyFilter from "./filters/currency.filters";
-import messagePlugin from '@/utils/message.plugin';
+import currencyFilter from "./filters/currency.filters"
+import tooltipDirective from '@/directives/tooltip.directive'
+import messagePlugin from '@/utils/message.plugin'
 // L09.18 Импортируем лоадер глобально для всего преложения
-import Loader from "./components/app/Loader";
+import Loader from "./components/app/Loader"
 import 'materialize-css/dist/js/materialize.min'
 
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/database'
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = false
 
-Vue.use(messagePlugin);
-Vue.use(Vuelidate);
-Vue.filter('date', dateFilter);
+Vue.use(messagePlugin)
+Vue.use(Vuelidate)
+Vue.filter('date', dateFilter)
 // L09.39 Регистрируем фильтр Валют
-Vue.filter('currency', currencyFilter);
+Vue.filter('currency', currencyFilter)
 // L09.19 Регистрируем глобально
-Vue.component('Loader', Loader);
+Vue.component('Loader', Loader)
+Vue.directive('tooltip', tooltipDirective)
 
 firebase.initializeApp({
   apiKey: "AIzaSyAJwuLV47LcXAL5HggFjA-DAX2V-gEdOUg",
