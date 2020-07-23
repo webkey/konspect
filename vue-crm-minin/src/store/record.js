@@ -23,6 +23,25 @@ export default {
         commit('setError', e)
         throw e
       }
-    }
+    },
+    // 16.1/ Экшин получения одной отдельной записи по id этой записи.
+    // В экшин id передается вторым параметром после {dispatch, commit}
+    async fetchRecordById({dispatch, commit}, id) {
+      try {
+        const uid = await dispatch('getUid');
+        // 16.2/ В Firebase есть метод, который позволяет получить доступ к нужному элементу по его id
+        // Этот метод называется .child(id), где id - id элемента
+        const record = (await firebase.database().ref(`/user/${uid}/records`).child(id).once('value')).val() || {};
+        // В полученный объкт добавляем значение id,
+        // но возвращаем сам объект, а не массив, как в экшене fetchRecords
+        // {...records, id: id}
+        // запись "id: id" можно сократить до "id"
+        return {...record, id};
+        // Также нужно создать экшен для получения одной категории 16.3
+      } catch (e) {
+        commit('setError', e)
+        throw e
+      }
+    },
   }
 }

@@ -6,54 +6,63 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    // route-1
     path: '/login',
     name: 'login',
     meta: {layout: 'empty'},
     component: () =>  import('../views/Login')
   },
   {
+    // route-2
     path: '/register',
     name: 'register',
     meta: {layout: 'empty'},
     component: () =>  import('../views/Register')
   },
   {
+    // route-3
     path: '/',
     name: 'home',
     meta: {layout: 'main', auth: true},
     component: () =>  import('../views/Home')
   },
   {
+    // route-4
     path: '/categories',
     name: 'categories',
     meta: {layout: 'main', auth: true},
     component: () =>  import('../views/Categories')
   },
   {
+    // route-5
     path: '/detail/:id',
     name: 'detail',
     meta: {layout: 'main', auth: true},
     component: () =>  import('../views/Detail')
   },
   {
+    // route-6
     path: '/history',
     name: 'history',
     meta: {layout: 'main', auth: true},
     component: () =>  import('../views/History')
   },
   {
+    // route-7
     path: '/planning',
     name: 'planning',
     meta: {layout: 'main', auth: true},
     component: () =>  import('../views/Planning')
   },
   {
+    // route-8
     path: '/profile',
     name: 'profile',
     meta: {layout: 'main', auth: true},
     component: () =>  import('../views/Profile')
   },
   {
+    // route-9
     path: '/record',
     name: 'record',
     meta: {layout: 'main', auth: true},

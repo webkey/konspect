@@ -12,6 +12,18 @@ export default {
         throw e;
       }
     },
+    // 16.3/ Экшин получения одной отдельной категории по id этой категории.
+    // Логика работы этого экшена аналогична экшену fetchRecordById 16.1
+    async fetchCategoryById({dispatch}, id) {
+      try {
+        const uid = await dispatch('getUid');
+        const category = (await firebase.database().ref(`/user/${uid}/categories`).child(id).once('value')).val() || {};
+
+        return {...category, id};
+      } catch (e) {
+        throw e;
+      }
+    },
     async createCategory({dispatch}, {title, limit}) {
       try {
         const uid = await dispatch('getUid');
