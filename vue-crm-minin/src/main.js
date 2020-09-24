@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Vuelidate from 'vuelidate'; // Плагин валидации форм https://vuelidate.js.org/
+// 17.1
+import Paginate from 'vuejs-paginate'; // Плагин для пагинации https://www.npmjs.com/package/vuejs-paginate
 import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
@@ -26,6 +28,8 @@ Vue.filter('date', dateFilter)
 Vue.filter('currency', currencyFilter)
 // L09.19 Регистрируем глобально
 Vue.component('Loader', Loader)
+// 17.2
+Vue.component('Paginate', Paginate)
 Vue.directive('tooltip', tooltipDirective)
 
 firebase.initializeApp({
